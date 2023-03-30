@@ -4,6 +4,7 @@ class Mentor:
         self.surname = surname
         self.courses_attached = []
 
+
 class Lecturer(Mentor):
     def __init__(self, name, surname):
         super().__init__(name, surname)
@@ -20,6 +21,7 @@ class Lecturer(Mentor):
     def __gt__(self, other):
         if (not isinstance(other, type(self))): raise TypeError("Unsupported operator")
         return float(self.avg_grade()) > float(other.avg_grade())
+
 
 class Student:
     def __init__(self, name, surname, gender):
@@ -51,7 +53,8 @@ class Student:
         if (len(self.grades) == 0): return 0
         grades = sum(map(lambda i: i, self.grades.values()), [])
         return f"{sum(grades)/len(grades):.1f}"
-        
+
+   
 class Reviewer(Mentor):
     def rate_hw(self, student: Student, course, grade):
         if isinstance(student, Student) and course in self.courses_attached and course in student.courses_in_progress and isinstance(grade, int) and grade > 0 and grade <= 10:
@@ -64,7 +67,25 @@ class Reviewer(Mentor):
 
     def __str__(self) -> str:
         return f"Имя: {self.name}\nФамилия: {self.surname}"
- 
+
+
+class Program:
+    def avg_students(self, students: list, course_name: str):
+        grades = []
+        for i in students:
+            if (not isinstance(i, Student)): raise TypeError("Список СТУДЕНТОВ а")
+            if (course_name not in i.grades): pass
+            grades += i.grades[course_name]
+        return f"{sum(grades)/len(grades):.1f}"
+    
+    def avg_lecturers(self, lecturers: list, course_name: str):
+        grades = []
+        for i in lecturers:
+            if (not isinstance(i, Lecturer)): raise TypeError("Список ЛЕКТОРОВ а")
+            if (course_name not in i.grades): pass
+            grades += i.grades[course_name]
+        return f"{sum(grades)/len(grades):.1f}"
+
 # best_student = Student('Ruoy', 'Eman', 'your_gender')
 # best_student.courses_in_progress += ['Python']
  
