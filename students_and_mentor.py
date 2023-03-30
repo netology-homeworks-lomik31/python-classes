@@ -17,6 +17,10 @@ class Lecturer(Mentor):
         grades = sum(map(lambda i: i, self.grades.values()), [])
         return f"{sum(grades)/len(grades):.1f}"
 
+    def __gt__(self, other):
+        if (not isinstance(other, type(self))): raise TypeError("Unsupported operator")
+        return float(self.avg_grade()) > float(other.avg_grade())
+
 class Student:
     def __init__(self, name, surname, gender):
         self.name = name
@@ -29,6 +33,10 @@ class Student:
     def __str__(self) -> str:
         return f"Имя: {self.name}\nФамилия: {self.surname}\nСредняя оценка за домашние задания: {self.avg_grade()}\n\
 Курсы в процессе изучения: {', '.join(self.courses_in_progress)}\nЗавершенные курсы: {', '.join(self.finished_courses)}"
+
+    def __gt__(self, other):
+        if (not isinstance(other, type(self))): raise TypeError("Unsupported operator")
+        return float(self.avg_grade()) > float(other.avg_grade())
 
     def rate_hw(self, lecturer: Lecturer, course, grade):
         if isinstance(lecturer, Lecturer) and course in self.courses_in_progress and course in lecturer.courses_attached and isinstance(grade, int) and grade > 0 and grade <= 10:
