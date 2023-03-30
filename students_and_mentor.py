@@ -19,7 +19,7 @@ class Student:
         self.grades = {}
     
     def rate_hw(self, lecturer: Lecturer, course, grade):
-        if isinstance(lecturer, Lecturer) and course in self.courses_in_progress and course in lecturer.courses_attached:
+        if isinstance(lecturer, Lecturer) and course in self.courses_in_progress and course in lecturer.courses_attached and isinstance(grade, int) and grade > 0 and grade <= 10:
             if course in lecturer.grades:
                 lecturer.grades[course] += [grade]
             else:
@@ -29,7 +29,7 @@ class Student:
         
 class Reviewer(Mentor):
     def rate_hw(self, student: Student, course, grade):
-        if isinstance(student, Student) and course in self.courses_attached and course in student.courses_in_progress:
+        if isinstance(student, Student) and course in self.courses_attached and course in student.courses_in_progress and isinstance(grade, int) and grade > 0 and grade <= 10:
             if course in student.grades:
                 student.grades[course] += [grade]
             else:
