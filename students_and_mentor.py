@@ -8,6 +8,10 @@ class Lecturer(Mentor):
     def __init__(self, name, surname):
         super().__init__(name, surname)
         self.grades = {}
+    
+    def avg_grade(self):
+        grades = sum(map(lambda i: i, self.grades.values()), [])
+        return f"{sum(grades)/len(grades):.2f}"
 
 class Student:
     def __init__(self, name, surname, gender):
@@ -26,6 +30,10 @@ class Student:
                 lecturer.grades[course] = [grade]
         else:
             return 'Ошибка'
+
+    def avg_grade(self):
+        grades = sum(map(lambda i: i, self.grades.values()), [])
+        return f"{sum(grades)/len(grades):.2f}"
         
 class Reviewer(Mentor):
     def rate_hw(self, student: Student, course, grade):
