@@ -13,6 +13,7 @@ class Lecturer(Mentor):
         return f"Имя: {self.name}\nФамилия: {self.surname}\nСредняя оценка за лекции: {self.avg_grade()}"
 
     def avg_grade(self):
+        if (len(self.grades) == 0): return 0
         grades = sum(map(lambda i: i, self.grades.values()), [])
         return f"{sum(grades)/len(grades):.1f}"
 
@@ -39,6 +40,7 @@ class Student:
             return 'Ошибка'
 
     def avg_grade(self):
+        if (len(self.grades) == 0): return 0
         grades = sum(map(lambda i: i, self.grades.values()), [])
         return f"{sum(grades)/len(grades):.1f}"
         
