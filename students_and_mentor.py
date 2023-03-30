@@ -11,7 +11,7 @@ class Lecturer(Mentor):
     
     def avg_grade(self):
         grades = sum(map(lambda i: i, self.grades.values()), [])
-        return f"{sum(grades)/len(grades):.2f}"
+        return f"{sum(grades)/len(grades):.1f}"
 
 class Student:
     def __init__(self, name, surname, gender):
@@ -33,7 +33,7 @@ class Student:
 
     def avg_grade(self):
         grades = sum(map(lambda i: i, self.grades.values()), [])
-        return f"{sum(grades)/len(grades):.2f}"
+        return f"{sum(grades)/len(grades):.1f}"
         
 class Reviewer(Mentor):
     def rate_hw(self, student: Student, course, grade):
