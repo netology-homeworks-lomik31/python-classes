@@ -86,6 +86,34 @@ class Program:
             grades += i.grades[course_name]
         return f"{sum(grades)/len(grades):.1f}"
 
+    def Main(self):
+        s1 = Student("test1", "", None)
+        s2 = Student("test2", "", None)
+        s1.courses_in_progress.append("amogus")
+        s2.courses_in_progress.append("amogus")
+        l1 = Lecturer("test3", "")
+        l2 = Lecturer("test4", "")
+        l1.courses_attached.append("amogus")
+        l2.courses_attached.append("amogus")
+        s1.rate_hw(l1, "amogus", 8)
+        s2.rate_hw(l2, "amogus", 7)
+        s1.rate_hw(l1, "amogus", 5)
+        s2.rate_hw(l2, "amogus", 3)
+        r1 = Reviewer("test5", "")
+        r2 = Reviewer("test6", "")
+        r1.courses_attached.append("amogus")
+        r1.rate_hw(s1, "amogus", 9)
+        r1.rate_hw(s2, "amogus", 7)
+        print(s1 < s2)
+        print(l1 > l2)
+        print("", s1, l2, r1, sep="\n\n")
+        print("", self.avg_students([s1, s2], "amogus"), self.avg_lecturers([l1, l2], "amogus"), sep="\n\n")
+
+
+if __name__ == "__main__":
+    program = Program()
+    program.Main()
+
 # best_student = Student('Ruoy', 'Eman', 'your_gender')
 # best_student.courses_in_progress += ['Python']
  
