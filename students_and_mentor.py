@@ -27,7 +27,7 @@ class Student:
         self.grades = {}
 
     def __str__(self) -> str:
-        return f"Имя: {self.name}\nФамилия: {self.surname}\nСредняя оценка за домашние задания: {self.avg_grade()}\
+        return f"Имя: {self.name}\nФамилия: {self.surname}\nСредняя оценка за домашние задания: {self.avg_grade()}\n\
 Курсы в процессе изучения: {', '.join(self.courses_in_progress)}\nЗавершенные курсы: {', '.join(self.finished_courses)}"
 
     def rate_hw(self, lecturer: Lecturer, course, grade):
